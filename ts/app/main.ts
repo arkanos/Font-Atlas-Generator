@@ -23,6 +23,9 @@ const options = new class implements IOptions {
     charset = "a";
     clip = false;
     grid = false;
+    transparentBackground = false;
+    fontColor = "#ffffff";
+    backgroundColor = "#000000";
 };
 
 //START
@@ -85,7 +88,7 @@ bd.resize.action = () => {
     ) + "px");
 }
 bd.saveImage.action = () => {
-    qr.canvas.toBlob((image) => {
+    atlas.exportImage((image) => {
         saveAs(image!, getFileName() + ".png");
     });
 }
@@ -232,6 +235,9 @@ bd.cellHeight.action = (update) => {
 bd.fontSize.action = () => {
     options.font.size = qr.fontSize.value + "pt";
 };
+bd.fontColor.action = () => {
+    options.fontColor = qr.fontColor.value;
+};
 bd.clipCells.action = () => {
     options.clip = qr.clipCells.checked;
 };
@@ -251,6 +257,12 @@ bd.offsetY.action = () => {
 };
 bd.showGrid.action = () => {
     options.grid = qr.showGrid.checked;
+};
+bd.backgroundColor.action = () => {
+    options.backgroundColor = qr.backgroundColor.value;
+};
+bd.transparentBackground.action = () => {
+    options.transparentBackground = qr.transparentBackground.checked;
 };
 
 bd.charset.action = () => {
